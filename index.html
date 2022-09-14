@@ -11,7 +11,7 @@
 
 <body>
     <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Logo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -45,27 +45,72 @@
         <h3>Grenciamento de Usuários</h3>
         <form action="">
             <div class="row">
-                <div class="col">
+                <div class="col-md-8">
                     <label class="form-lable" for="">Nome</label>
                     <input class="form-control" type="text" name="nome" id="nome">
                 </div>
-                <div class="col">
+                <div class="col-md-4">
                     <label class="form-lable" for="email">E-mail</label>
                     <input class="form-control" type="email" name="email" id="email">
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-md">
                     <label class="form-lable" for="senha">Senha</label>
                     <input class="form-control" type="password" name="senha" id="senha">
                 </div>
-                <div class="col">
+                <div class="col-md">
                     <label class="form-lable" for="confirmar">Confirmar Senha</label>
                     <input class="form-control" type="password" name="confirmar" id="confirmar" />
                 </div>
             </div>
-            <button type="submit" class="btn btn-sucess mt-2">Cadastrar</button>
+            <button type="submit" class="btn btn-dark mt-2">Cadastrar</button>
         </form>
+        <!-- Datatable para lisatagem de dados -->
+        <div class="border rounded mt-4">
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th colspan="2">Ação</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Angelo</td>
+                        <td>angelmarcio9191@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary">Alterar</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger">Exlcuir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bruno</td>
+                        <td>bruno@hotmsil.com</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary">Alterar</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger">Exlcuir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Jessica</td>
+                        <td>jessica@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-primary">Alterar</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger">Exlcuir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 
