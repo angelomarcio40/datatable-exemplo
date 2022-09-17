@@ -45,7 +45,7 @@
 
     <div class="container border mt-2 rounded">
         <h3>Grenciamento de Usuários</h3>
-        <form action="">
+        <form id="form-usuarios">
             <div class="row">
                 <div class="col-md-8">
                     <label class="form-lable" for="">Nome</label>
@@ -66,7 +66,7 @@
                     <input class="form-control" type="password" name="confirmar" id="confirmar" />
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark mt-2">Cadastrar</button>
+            <button type="button" onclick="addUser()" class="btn btn-dark mt-2">Cadastrar</button>
         </form>
         <!-- Datatable para lisatagem de dados -->
         <div class="border rounded mt-4">
@@ -89,7 +89,7 @@
                     </tr>
                     <tr>
                         <td>Bruno</td>
-                        <td>bruno@hotmsil.com</td>
+                        <td>bruno@hotmail.com</td>
                         <td>
                             <button type="button" class="btn btn-sm btn-primary">Alterar</button>
                             <button type="button" class="btn btn-sm btn-danger">Exlcuir</button>
@@ -124,25 +124,8 @@
     <!-- Requisito a importação do JQUERY -->
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        // document.ready define scripts JS que serão executados assim que a página for carrgada, que a página estiver "pronta"
-        $(document).ready(function () {
-            // inicia a datatable
-            $('#tabela').DataTable({
-                "language": {
-                    url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json'
-                }
-            });
-        });
-
-        const addUser = () =>{
-            // Cria a var e captura o valor utilizando JQUERY
-            let nome = $('#nome').val()
-            let email = $('#email').val()
-            let senha = $('#senha').val()
-            let confirmar = $('#confirmar').val()
-        }
-    </script>
+    <!-- Script com finções da página -->
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>
