@@ -9,14 +9,28 @@ $(document).ready(function () {
 });
 
 // Função que add usuários
-const addUser = () =>{
+const addUser = () => {
 
     // Captura tofo o formulárionencria um formData
     let dados = new FormData($('#form-usuarios')[0]);
 
     // envio e recebimento de dados
-    const result = fetch('backend/addUser.php',{
+    const result = fetch('backend/addUser.php', {
         method: 'POST',
         body: dados
     })
+        .then((response) => response.json())
+        .then((result) => {
+            // Aqui  é tratado o retorno ao front
+            Swal.fire({
+                title: 'Atenção',
+                text: result.mensagem,
+                icon: result.retorno == 'ok' ? 'success' : 'error'
+            })
+
+            // limpa os campos caso o retorno tenha sucesso
+            // utilização do IF ternario para redução de escrita de codigo
+            result.retorno == 'ok' ? $('#form-usuarios')[0].reset() : ''
+
+        })
 }
