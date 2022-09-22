@@ -5,9 +5,9 @@ include 'include/conexao.php';
 
 try{
     // Monta a query SQL
-    $sql = "SELECT id,nome,email,data_vadastro,ativo FROM tb_datatable";
+    $sql = "SELECT id,nome,email,data_cadastro,ativo FROM tb_datatable";
     // Prepara e execução
-    $commando = $con->prepare($sql);
+    $comando = $conexao->prepare($sql);
     // executa o comando
     $comando->execute();
 
