@@ -10,7 +10,7 @@ $(document).ready(function () {
 // Função que add usuários
 const addUser = () => {
 
-    // Captura tofo o formulárionencria um formData
+    // Captura foto e formulário e cria um formData
     let dados = new FormData($('#form-usuarios')[0]);
 
     // envio e recebimento de dados
