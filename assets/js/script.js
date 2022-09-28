@@ -64,12 +64,21 @@ const listUser = () => {
                             <td>${user.nome}</td>
                             <td>${user.email}</td>
                             <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="ativo" ${user.ativo==1 ? 'checked' : ''} onchange="updateUserActive(${user.id})">
+                                </div>
+                            </td>
+                            <td>${user.data_cadastro}</td>
+                            <td>
                                 <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></button>
-                                <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash" onclick="deleteUser(${user.id})"></i></button>
                             </td>
                         </tr>
                     `)
             })
+
+            // CSS dinâmico do botão
+            // <button type="button" class="btn btn-sm btn-${user.ativo==1 ? 'success' : 'danger'}">${user.ativo==1 ? 'Sim' : 'Não'}
 
             $("#tabela").DataTable({
                 language: {
@@ -77,4 +86,49 @@ const listUser = () => {
                 },
             });
         })
+}
+
+// Função que altera status de ativo do usuario
+
+const updateUserActive = (id) => {
+    const result = fetch(`backend/updateUserActive.php`,{
+        method: "POST",
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then((response) => response.json()) //retorna uma promise
+    .then((result) => {
+        Swal.fire({
+            icon: result.retorno == 'ok' ? 'success' : 'error',
+            title: result.mensagem,
+            showConfirmButton: false,
+            timer: 2000
+        })
+    });
+
+}
+
+const deleteUser = (id) => {
+    const result = fetch(`backend/deleteUser.php`,{
+        method: "POST",
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then((response) => response.json()) //retorna uma promise
+    .then((result) => {
+        Swal.fire({
+            icon: result.retorno == 'ok' ? 'success' : 'error',
+            title: result.mensagem,
+            showConfirmButton: false,
+            timer: 2000
+        }) 
+        
+        // recarregar a lista de usuarios
+        listUser()
+    });
+
 }

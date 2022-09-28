@@ -7,14 +7,14 @@ try{
 
         $id = $_POST['id'];
 
-        $sql = "DELETE FROM tb_datatable WHERE id = $id";
+        $sql = "UPDATE tb_datatable SET ativo = NOT ativo WHERE id = $id";
 
         $comando = $conexao->prepare($sql);
 
         $comando->execute();
 
             // cria uma variavel que ira receber o array acima convertido em JSON
-            $retorno = array('retorno'=>'ok','mensagem'=>'Usuário deletado com sucesso!');
+            $retorno = array('retorno'=>'ok','mensagem'=>'Usuário alterado com sucesso!');
             $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
 
             // retorno em formato JSON
