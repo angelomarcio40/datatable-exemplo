@@ -1,7 +1,7 @@
 <?php
 
 // include do arquivo de conexão
-    include 'include/conexao.php';
+    include 'functions.php';
 
 try{
 
@@ -9,24 +9,13 @@ try{
 
         $sql = "DELETE FROM tb_datatable WHERE id = $id";
 
-        $comando = $conexao->prepare($sql);
+        $msg = "Usuário deletado com sucesso!";
 
-        $comando->execute();
-
-            // cria uma variavel que ira receber o array acima convertido em JSON
-            $retorno = array('retorno'=>'ok','mensagem'=>'Usuário deletado com sucesso!');
-            $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-            // retorno em formato JSON
-            echo $json;
+        insertUpdateDelete($sql,$msg);
 
     }catch(PDOException $erro){
-        // Tratamento de erro ou exceção
-        $retorno = array('retorno'=>'erro','mensagem'=>$erro->getMessage());
-
-        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-        echo $json;
+       
+        pdocatch($erro);
     }
 
     // Fechar conexao

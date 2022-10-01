@@ -10,6 +10,20 @@ $(document).ready(function () {
 // Função que add usuários
 const addUser = () => {
 
+    // Exemplo - Valida se o nome foi preenchido - usando JQUERY
+    // let nome = $('#nome').val()
+    // if(nome == ''){
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'Atenção!',
+    //         text: 'Preencha o nome!'
+    //     })
+    //     return
+    // }
+
+    // Valida se nome foi preenchido - usando JS Vanilla
+    // let nome = document.getElementById('nome').value
+
     // Captura foto e formulário e cria um formData
     let dados = new FormData($('#form-usuarios')[0]);
 
@@ -64,7 +78,6 @@ const listUser = () => {
                             <td>${user.nome}</td>
                             <td>${user.email}</td>
                             <td>${moment(user.data_cadastro).format('DD/MM/YY HH:mm')}</td>
-                            <td>
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" role="switch" id="ativo" ${user.ativo==1 ? 'checked' : ''} onchange="updateUserActive(${user.id})">
                                 </div>
