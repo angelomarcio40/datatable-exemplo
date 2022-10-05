@@ -23,6 +23,15 @@ function validaCampoVazio($campo,$nomedocampo){
     }
 }
 
+// Criptografa a senha usuário
+// alguns algoritmo de cript: sha1, md5, password hash php
+
+$senha_cript = sha1($senha);
+
+$sql = "INSERT INTO  tb_datatable (nome, email, senha) VALUES ('$nome','$email','$senha')";
+
+$msg = "Usuário adicionado com sucesso!";
+
 // função generica que excuta uma query de adicionar, atualizar o remover registros
 function insertUpdateDelete($sql,$mensagemretorno){
     
