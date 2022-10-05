@@ -3,11 +3,15 @@
     // include do arquivo de finctions
     include 'functions.php';
 
-try{
+    try{
+        
+    // define os caracteres que iremos remover dos campos preechidos no form (replace)
+        $carac = array('(',')','-',' ','.');
+
         $nome = $_POST['nome'];
         $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
-        $cpf = $_POST['cpf'];
+        $telefone = str_replace($carac,"",$_POST['telefone']);
+        $cpf = str_replace($carac,"",$_POST['cpf']);
         $senha = $_POST['senha'];
         $confirmar = $_POST['confirmar'];
         
@@ -46,4 +50,3 @@ try{
 
     // Fechar conexao
     $con = null;
-?>

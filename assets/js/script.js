@@ -4,8 +4,12 @@ $(document).ready(function () {
     // Função que lista os usuário cadastrados
     listUser();
 
+    // utilização da biblioterca Input mask para criar mascar a de telefone
     $('#telefone').inputmask("(99) 9999 99999")
+    //  inputmask - campo cpf
     $('#cpf').inputmask('999.999.999-99')
+    // exemplo de mascara de CEP
+    // $('#cep).inputmask('99999-999')
 
 });
 
@@ -87,8 +91,8 @@ const listUser = () => {
                             </td>
                             <td>${user.data_cadastro}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash" onclick="deleteUser(${user.id})"></i></button>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-editar-usuario"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash" onclick="deleteUser(${user.id})"></i></button>
                             </td>
                         </tr>
                     `)
