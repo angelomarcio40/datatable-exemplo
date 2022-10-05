@@ -4,6 +4,8 @@ $(document).ready(function () {
     // Função que lista os usuário cadastrados
     listUser();
 
+    $('#telefone').mask("(00) 0000 00000")
+
 })
 
 

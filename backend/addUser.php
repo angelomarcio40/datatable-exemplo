@@ -6,12 +6,16 @@
 try{
         $nome = $_POST['nome'];
         $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $cpf = $_POST['cpf'];
         $senha = $_POST['senha'];
         $confirmar = $_POST['confirmar'];
         
         // executa a função que verifica se o campo está preenchido
         validaCampoVazio($nome,'nome');
         validaCampoVazio($email,'email');
+        validaCampoVazio($nome,'telefone');
+        validaCampoVazio($nome,'cpf');
         validaCampoVazio($senha,'senha');
         validaCampoVazio($confirmar,'confirmar senha');
 
@@ -30,7 +34,7 @@ try{
             exit;
         }
 
-        $sql = "INSERT INTO tb_datatable (nome, email, senha) VALUES ('$nome','$email','$senha')";
+        $sql = "INSERT INTO tb_datatable (nome, email, telefone, cpf, senha) VALUES ('$nome','$email','$telefone','$cpf','$senha')";
 
         $msg = "Usuário adicionado com sucesso!";
 
