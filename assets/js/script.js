@@ -4,9 +4,10 @@ $(document).ready(function () {
     // Função que lista os usuário cadastrados
     listUser();
 
-    $('#telefone').mask("(00) 0000 00000")
+    $('#telefone').inputmask("(99) 9999 99999")
+    $('#cpf').inputmask('999.999.999-99')
 
-})
+});
 
 
 // Função que add usuários
