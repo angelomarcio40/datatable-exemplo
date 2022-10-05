@@ -15,6 +15,9 @@ try{
         validaCampoVazio($senha,'senha');
         validaCampoVazio($confirmar,'confirmar senha');
 
+        // executa a função se o email já esta cadastrado
+        checkEmailUser($email);
+
         
         if($senha != $confirmar){
             // cria uma variavel que ira receber o array acima convertido em JSON

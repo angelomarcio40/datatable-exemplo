@@ -11,7 +11,7 @@ try{
 
         $sql = "INSERT into tb_aluno(nome,curso,periodo)VALUES('$nome','$curso','$periodo')";
 
-        $msg = "Aluno cadfastrafdo com sucesso!";
+        $msg = "Aluno cadastrado com sucesso!";
 
         insertUpdateDelete($sql,$msg);
 
