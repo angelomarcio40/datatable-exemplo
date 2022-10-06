@@ -91,7 +91,7 @@ const listUser = () => {
                             </td>
                             <td>${user.data_cadastro}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-editar-usuario"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" class="btn btn-sm btn-primary" onclick="listUserID(${user.id})"><i class="bi bi-pencil-square"></i></button>
                                 <button type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash" onclick="deleteUser(${user.id})"></i></button>
                             </td>
                         </tr>
@@ -151,5 +151,36 @@ const deleteUser = (id) => {
         // recarregar a lista de usuarios
         listUser()
     });
+
+}
+
+const listUserID = (id) =>{
+    // aqui teria que srer implementado tda a requisição para o backend PHP
+    // o modal terá que ser exibido dentro do result
+    // .then((result) => {o codigo abaixo ficara aqui})
+
+    const result = fetch(`backend/listUserID.php`,{
+        method: "POST",
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then((response) => response.json()) //retorna uma promise
+    .then((result) => {
+
+        // preenchen os dados dentro do form de editar usuarios
+        $('#edita-nome').val(result[0].nome)
+        $('#edita-email').val(result[0].email)
+        $('#edita-telefone').val(result[0].telefone)
+        $('#edita-cpf').val(result[0].cpf)
+
+        $('#edita-telefone').inputmask('(99) 99999-9999')
+        $('#edita-cpf').inputmask('999.999.999-99')
+        // ex o modal apos preencher os dados para ediçãoibe
+        const modalEditar = new bootstrap.Modal('#modal-editar-usuario')
+        modalEditar.show()
+        
+    }) 
 
 }
