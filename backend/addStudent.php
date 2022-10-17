@@ -1,14 +1,14 @@
 <?php
 
-// include do arquivo de conexão
+// include do arquivo de funcao
     include 'functions.php';
 
-try{
+    try{
 
-        $nome= 'Angelo';
+        $nome = 'Thiago';
         $curso = 'Técnico em Informática';
-        $periodo = 'Noite';
-
+        $periodo = 'NOite';
+       
         $sql = "INSERT into tb_aluno(nome,curso,periodo)VALUES('$nome','$curso','$periodo')";
 
         $msg = "Aluno cadastrado com sucesso!";
@@ -16,12 +16,10 @@ try{
         insertUpdateDelete($sql,$msg);
 
     }catch(PDOException $erro){
-        
-        pdocatch($erro);
+
+       pdocatch($erro);
 
     }
-
-    // Fechar conexao
+    // Fechar a conexao
     $con = null;
-
-    ?>
+?>

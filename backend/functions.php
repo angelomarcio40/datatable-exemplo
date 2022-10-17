@@ -1,88 +1,107 @@
 <?php
- 
-// linha de codigo que desabilita warnings e erro de PHP
+
+// linha de codigo que desabilita warnings e erro do PHP
 // error_reporting(0);
 include_once 'include/conexao.php';
-// define que a vriavel conexao sera de uso global
-// global $conexao;
 
-// Arquivo de funções genéricas que podem ser utiklizadas em qualque página
 
-// Função que valida o preenchimeto de uma vriavel
+
+// // define que a variavel conn sera de uso global
+// global $con;
+
+
+// Arquivo de funcoes genericas que podem ser utilizadas em qq pagina
+
+// funcao que valida o preenchimento de uma variavel
 function validaCampoVazio($campo,$nomedocampo){
-        // Exemplo simples de validação de preenchimento de variável
-        if($campo == ''){
-        // cria uma variavel que ira receber o array acima convertido em JSON
-        $retorno = array('retorno'=>'erro','mensagem'=>'Preencha o campo '.$nomedocampo.'!');
+    // Exemplo simples de validação de preenchimento de variável
+        
+    if($campo == ''){
+        // criar um array para armazenar a mensagem de erro
+        $retorno = array(
+            'retorno'=>'erro',
+            'mensagem'=>'Preencha o campo '.$nomedocampo.'!'
+        );
+        // cria um variavel que ira receber o array acima convertido em JSON
         $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
         // retorno em formato JSON
+        
         echo $json;
-        // encerra script
         exit;
+        // encerra o script
+        
     }
+        
+
 }
 
-// Criptografa a senha usuário
-// alguns algoritmo de cript: sha1, md5, password hash php
-
-$senha_cript = sha1($senha);
-
-$sql = "INSERT INTO  tb_datatable (nome, email, senha) VALUES ('$nome','$email','$senha')";
-
-$msg = "Usuário adicionado com sucesso!";
-
-// função generica que excuta uma query de adicionar, atualizar o remover registros
+// funcao generica que executa uma query de adicionar, atualizar o remover registros
 function insertUpdateDelete($sql,$mensagemretorno){
-    
-        $comando = $GLOBALS['conexao']->prepare($sql);
 
-        $comando->execute();
+   
+    $comando= $GLOBALS['con']->prepare($sql);
 
-            // cria uma variavel que ira receber o array acima convertido em JSON
-            $retorno = array('retorno'=>'ok','mensagem'=>$mensagemretorno);
-            $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    $comando->execute();
 
-            // retorno em formato JSON
-            echo $json;
+    $retorno = array(
+                    'retorno'=>'ok',
+                    'mensagem'=>$mensagemretorno
+                );
+
+    // cria um variavel que ira receber o array acima convertido em JSON
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+
+    // retorno em formato JSON
+    echo $json;
+
+
 }
+
 
 function pdocatch($erro){
-    // Tratamento de erro ou exceção
-    $retorno = array('retorno'=>'erro','mensagem'=>$erro->getMessage());
+     // Tratamento de erro ou excecao
+    $retorno = array(
+        'retorno'=>'erro',
+        'mensagem'=>$erro->getMessage()
+    );
 
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
 
     echo $json;
 }
 
-// função que verifica se usuário esta cadastrado
+
+// funcao que verifica se o email do usuario ja esta cadastrado
 function checkEmailUser($email){
     
-    // monta comando SQL que será excutado no banco
-    $sql = "SELECT email FROM tb_datatable WHERE email = '$email'";
+    // comando SQL que será executado no banco
+    $sql = "SELECT email FROM tb_usuarios WHERE email = '$email'";
 
-    $comando=$GLOBALS['conexao']->prepare($sql);
+    $comando=$GLOBALS['con']->prepare($sql);
 
     $comando->execute();
 
     $validaEmail = $comando->fetchAll(PDO::FETCH_ASSOC);
 
-    // retorna variavel retorno
-    // quando utilizamos return = será retornado um valor pela função
-    // quando utilizamos echo = é exibido uma informação na tela
+    // retorna a variavel validaEmail
+    // quando utilizamos return = será retornado um valor pela funcao
+    // quando utilizamos echo = é exibido uma informacao na tela
     if($validaEmail != null){
-
         $retorno = array(
-            'retorno' => 'erro',
-            'mensagem' => 'E-mail já cadastrado, verifique e tente novamente!'
+            'retorno'=>'erro',
+            'mensagem'=>'E-mail já cadastrado, verifique e tente novamente!'
         );
 
+        // cria um variavel que ira receber o array acima convertido em JSON
         $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-    
+
+        // retorno em formato JSON
         echo $json;
         exit;
     }
+
 }
+
+
 
 ?>

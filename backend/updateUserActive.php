@@ -1,25 +1,23 @@
 <?php
 
-// include do arquivo de conexão
-    include 'functions.phpp';
+// include do arquivo de conexao
+    include 'functions.php';
 
-try{
+    try{
 
-        $id = $_POST['id'];
-
-        $sql = "UPDATE tb_datatable SET ativo = NOT ativo WHERE id = $id";
+        $id  = $_POST['id'];
+       
+        $sql = "UPDATE tb_usuarios SET ativo = NOT ativo WHERE id = $id";
 
         $msg = "Usuário alterado com sucesso!";
 
         insertUpdateDelete($sql,$msg);
 
     }catch(PDOException $erro){
-        
-        pdocatch($erro);
+
+       pdocatch($erro);
 
     }
-
-    // Fechar conexao
+    // Fechar a conexao
     $con = null;
-
-    ?>
+?>
