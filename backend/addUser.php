@@ -56,10 +56,13 @@
 
         $msg = "Usuário adicionado com sucesso!";
 
-        insertUpdateDelete($sql,$msg);   
+        insertUpdateDelete($sql,$msg);
+        
+        // função que gera um tokem para ativar a conta cadastro
+        $token = geraTokenUsuario($email);
         
         // Envia e-mail, se o insert for executado
-        enviaEmail($email,$nome);
+        enviaEmail($email,$nome,$token);
 
 
 

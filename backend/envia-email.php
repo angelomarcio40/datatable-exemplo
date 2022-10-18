@@ -13,7 +13,7 @@ date_default_timezone_set('America/Sao_Paulo');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-function enviaEmail($destinatario_email,$destinatario_nome)
+function enviaEmail($destinatario_email,$destinatario_nome,$token)
 {
 
     // =======================CONFIG EMAIL===============
@@ -23,6 +23,18 @@ function enviaEmail($destinatario_email,$destinatario_nome)
     $email_usuario = 'tecnico22asenac@gmail.com';
     $email_usuario_password = 'zvfarpeztyqgtrhe';
     $email_usuario_nome = 'Técnico 22A';
+
+
+    $email_assunto = 'Sistema senac - Ative sua conta!';
+    $email_corpo = <<<EMAIL
+    <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2020/09/senac-logo-sem-fundo.png" width="200px">
+        <h1>Olá $destinatario_nome, bem vindo ao Sistema Senac</h1>
+        <p>Ative os seu- login, acessando o link abaixo:</p>
+        <a href="http://localhost/datatable-exemplo/backend/activeUser.php?token=$token">Ativa acesso</a>
+        <small>Esse é um email automático, não responda</small>
+        <small>Em caso de dúvidas, enttre em contato: contato@sistem.com</small>
+
+EMAIL;
 
     // usada apenas se estiver utilizando gerenciador de pacotes composer
     // require '../vendor/autoload.php';
@@ -87,7 +99,7 @@ function enviaEmail($destinatario_email,$destinatario_nome)
     $mail->addAddress($destinatario_email);
 
     //Set the subject line
-    $mail->Subject = 'Teste PHPMailer';
+    $mail->Subject = $email_assunto;
 
     //Read an HTML message body from an external file, convert referenced images to embedded,
     //convert HTML into a basic plain-text alternative body
@@ -95,7 +107,9 @@ function enviaEmail($destinatario_email,$destinatario_nome)
 
     //Replace the plain text body with one created manually
     // $mail->AltBody = 'This is a plain-text message body';
-    $mail->Body = 'Teste de email utilizando o PHPMailer - Corpo';
+
+    $mail->Body = $email_corpo;
+    $mail->isHTML(true);
 
     //Attach an image file
     // $mail->addAttachment('images/phpmailer_mini.png');
